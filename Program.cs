@@ -9,7 +9,7 @@ bool isRepeat = true;
 string s = "";
 string taskName = "";
 
-if(false) { // выборочно отключить для отладки
+//if(false) { // выборочно отключить для отладки
 
 taskName = "Задание  №1. Дано число обозначающее день недели. Выяснить является номер дня недели выходным.";
 isRepeat = true;
@@ -21,8 +21,8 @@ while(isRepeat) {
     if(intN1 == 6 || intN1 == 7) Console.WriteLine("День недели "+intN1+" - выходной день.");
     else                         Console.WriteLine("День недели "+intN1+" - НЕ выходной день.");
     Console.Write("----\n\rВыполнить задание еще раз? (0-нет, 1-да):");
-    int n = int.Parse(Console.ReadLine() ?? "0");
-    isRepeat = n != 0;
+    s = Console.ReadLine() ?? "0";
+    isRepeat = s != "0";
 }    
 
 
@@ -44,8 +44,8 @@ while(isRepeat) {
         Console.WriteLine("Число "+intN2+" НЕ является квадратом числа "+intN1);
     }    
     Console.Write("----\n\rВыполнить задание еще раз? (0-нет, 1-да):");
-    int n = int.Parse(Console.ReadLine() ?? "0");
-    isRepeat = n != 0;
+    s = Console.ReadLine() ?? "0";
+    isRepeat = s != "0";
 }    
 
 taskName = "Задание  №3. Задать номер четверти, показать диапазоны для возможных координат.";
@@ -64,11 +64,9 @@ while(isRepeat) {
     }
     Console.WriteLine(s);
     Console.Write("----\n\rВыполнить задание еще раз? (0-нет, 1-да):");
-    int n = int.Parse(Console.ReadLine() ?? "0");
-    isRepeat = n != 0;
+    s = Console.ReadLine() ?? "0";
+    isRepeat = s != "0";
 }    
-
-} // выборочно отключить для отладки
 
 
 taskName = "Задание  №4. Программа проверяет пятизначное число на палиндромом.";
@@ -105,12 +103,48 @@ while(isRepeat) {
     else                
         Console.WriteLine("\""+s+"\" НЕ является числом-палиндромом в шестнадцатеричной системе счисления.");
     Console.Write("----\n\rВыполнить задание еще раз? (0-нет, 1-да):");
-    int n = int.Parse(Console.ReadLine() ?? "0");
-    isRepeat = n != 0;
+    s = Console.ReadLine() ?? "0";
+    isRepeat = s != "0";
 }    
 
 
-taskName = "Задание  №5. Найти расстояние между точками в пространстве 2D/3D";
 
+taskName = "Задание  №5. Найти расстояние между точками в пространстве 2D/3D";
+double SquareOfDifference(string aStrNumber1, string aStrNumber2 ) {
+    return Math.Pow(double.Parse(aStrNumber1) - double.Parse(aStrNumber2), 2);
+}
+string ClearStr(string aStr) {
+    aStr = aStr.Trim(new char[]{' '});
+    while(aStr.Contains("  "))
+        aStr = aStr.Replace("  "," ");
+    return aStr;
+}
+isRepeat = true;
+while(isRepeat) {
+    Console.WriteLine("------------------------------------------------\n\r"+taskName);
+    Console.WriteLine("Введите координаты точек (действующие числа)");
+    Console.Write("в формате x1 y1; x2 y2 или x1 y1 z1; x2 y2 z2): ");
+    s = Console.ReadLine() ?? "0";
+    string[] ss = ClearStr(s).Split(';');   //foreach(string str in ss) Console.WriteLine("ss="+str);
+    if(ss.Length == 2) {
+        string[] ss1 = ClearStr(ss[0]).Split(' '); //foreach(string str in ss1) Console.WriteLine("2 ss1="+str);
+        string[] ss2 = ClearStr(ss[1]).Split(' '); //foreach(string str in ss2) Console.WriteLine("2 ss2="+str);
+        if(ss1.Length == 2 && ss2.Length == 2) {
+            doubleN = Math.Sqrt(SquareOfDifference(ss1[0],ss2[0]) + SquareOfDifference(ss1[1],ss2[1]));
+            Console.WriteLine("Ответ:");
+            Console.WriteLine("Растояние между точками равно "+doubleN);
+        } else if(ss1.Length == 3 && ss2.Length == 3) {
+            doubleN = Math.Sqrt(   SquareOfDifference(ss1[0],ss2[0]) 
+                                 + SquareOfDifference(ss1[1],ss2[1])
+                                 + SquareOfDifference(ss1[2],ss2[2])
+                               );
+            Console.WriteLine("Ответ:");
+            Console.WriteLine("Растояние между точками равно "+doubleN);
+        } else Console.WriteLine("Ошибка в введенных данных. Координат должно быть ДВЕ или ТРИ.");
+    } else Console.WriteLine("Ошибка в введенных данных. Точек должно быть ДВЕ.");
+    Console.Write("----\n\rВыполнить задание еще раз? (0-нет, 1-да):");
+    s = Console.ReadLine() ?? "0";
+    isRepeat = s != "0";
+}    
 
 
