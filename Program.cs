@@ -48,9 +48,6 @@ while(isRepeat) {
     isRepeat = n != 0;
 }    
 
-} // выборочно отключить для отладки
-
-
 taskName = "Задание  №3. Задать номер четверти, показать диапазоны для возможных координат.";
 isRepeat = true;
 while(isRepeat) {
@@ -71,8 +68,48 @@ while(isRepeat) {
     isRepeat = n != 0;
 }    
 
+} // выборочно отключить для отладки
+
 
 taskName = "Задание  №4. Программа проверяет пятизначное число на палиндромом.";
+bool isPalindrome(string aStrNumber) {
+    bool result = true;
+    int len = aStrNumber.Length;
+    for(int i=0; i<len/2;i++) {
+        if(aStrNumber[i] != aStrNumber[len-1-i]) {
+            result = false;
+            break;
+        } //else Console.WriteLine(aStrNumber[i]+" = "+aStrNumber[len-1-i]);
+    }
+    return result;
+}
+isRepeat = true;
+while(isRepeat) {
+    Console.WriteLine("------------------------------------------------\n\r"+taskName);
+    Console.Write("Введите целое десятичное число: ");
+    intN1 = int.Parse(Console.ReadLine() ?? "0");
+    Console.WriteLine("Ответ:");
+    s = Convert.ToString(intN1,10);
+    if(s.Length>1 && isPalindrome(s)) 
+        Console.WriteLine("\""+s+"\" является числом-палиндромом в десятичной системе счисления.");
+    else                
+        Console.WriteLine("\""+s+"\" НЕ является числом-палиндромом в десятичной системе счисления.");
+    s = Convert.ToString(intN1,2);
+    if(s.Length>1 && isPalindrome(s)) 
+        Console.WriteLine("\""+s+"\" является числом-палиндромом в двоичной системе счисления.");
+    else                
+        Console.WriteLine("\""+s+"\" НЕ является числом-палиндромом в двоичной системе счисления.");
+    s = Convert.ToString(intN1,16);
+    if(s.Length>1 && isPalindrome(s)) 
+        Console.WriteLine("\""+s+"\" является числом-палиндромом в шестнадцатеричной системе счисления.");
+    else                
+        Console.WriteLine("\""+s+"\" НЕ является числом-палиндромом в шестнадцатеричной системе счисления.");
+    Console.Write("----\n\rВыполнить задание еще раз? (0-нет, 1-да):");
+    int n = int.Parse(Console.ReadLine() ?? "0");
+    isRepeat = n != 0;
+}    
+
+
 taskName = "Задание  №5. Найти расстояние между точками в пространстве 2D/3D";
 
 
